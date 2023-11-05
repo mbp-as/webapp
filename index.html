@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Число из Google Таблицы</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Цвет фона */
+            color: #333; /* Цвет текста */
+            font-family: Arial, sans-serif;
+            text-align: center; /* Выравнивание текста по центру */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #0077cc; /* Цвет заголовка */
+            font-size: 2em; /* Увеличение размера текста */
+        }
+
+        #number {
+      		font-size: xx-large;
+            font-weight: bold; /* Установка жирного начертания */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #333; /* Цвет фона в темной теме */
+                color: #fff; /* Цвет текста в темной теме */
+            }
+
+            h1 {
+                color: #55aaff; /* Цвет заголовка в темной теме */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Число из Google Таблицы</h1>
+    <p id="number">Загрузка числа...</p>
+
+    <script>
+        // Замените URL на ссылку на вашу Google таблицу и укажите конкретную ячейку
+        const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1R5LDCiCR2nOOyp7c5fT8UR7dA_Xl3S0zLTvzYtLQ93Y/edit?usp=sharing';
+
+        function getGoogleSheetData() {
+            fetch(googleSheetUrl)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const htmlDocument = parser.parseFromString(data, 'text/html');
+                    const cellValue = htmlDocument.querySelector('table tbody tr td').innerText;
+                    document.getElementById('number').innerText = `Число: ${cellValue}`;
+                })
+                .catch(error => {
+                    console.error('Произошла ошибка:', error);
+                    document.getElementById('number').innerText = 'Ошибка при загрузке числа';
+                });
+        }
+
+        getGoogleSheetData();
+    </script>
+</body>
+</html>
