@@ -4,7 +4,7 @@
     <title>Ваша задолженость</title>
     <style>
         body {
-            background-color: #f0f0f0; /* Цвет фона */
+            background-color: #f0f0f000; /* Цвет фона */
             color: #333; /* Цвет текста */
             font-family: Arial, sans-serif;
             text-align: center; /* Выравнивание текста по центру */
@@ -23,13 +23,13 @@
         }
 
         #number {
-      		font-size: xx-large;
+      		font: size 500px;;
             font-weight: bold; /* Установка жирного начертания */
         }
 
         @media (prefers-color-scheme: dark) {
             body {
-                background-color: #333; /* Цвет фона в темной теме */
+                background-color: #33333300; /* Цвет фона в темной теме */
                 color: #fff; /* Цвет текста в темной теме */
             }
 
@@ -54,7 +54,7 @@
                     const parser = new DOMParser();
                     const htmlDocument = parser.parseFromString(data, 'text/html');
                     const cellValue = htmlDocument.querySelector('table tbody tr td').innerText;
-                    document.getElementById('number').innerText = `Число: ${cellValue}`;
+                    document.getElementById('number').innerText = `${cellValue}`;
                 })
                 .catch(error => {
                     console.error('Произошла ошибка:', error);
