@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анімація футбольних команд</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Cabin');
+
+        $blue: #201D56;
+        $pink: #CC1F6F;
+
+        body {
+            font-family: 'Cabin', sans-serif;
+            * {
+                box-sizing: border-box;
+            }
+        }
+
+        .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 25px;
+        }
+
+        .c-team {
+            flex: 1;
+            height: 50px;
+            background: #201D56;
+            overflow: hidden;
+            position: relative;
+            margin: 0 25px;
+            animation: c-team 1s ease forwards;
+        }
+
+        .c-team-logo {
+            height: 65px;
+            width: 65px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            img {
+                width: 100%;
+            }
+        }
+
+        .c-team-logo.e--left {
+            left: -65px;
+            &.e--animate {
+                animation: c-team_logo-left 1s ease forwards;
+            }
+        }
+
+        .c-team-logo.e--right {
+            right: -65px;
+            &.e--animate {
+                animation: c-team_logo-right 1s ease forwards;
+            }
+        }
+
+        .c-team-bg {
+            height: 100%;
+            width: 100px;
+            position: absolute;
+            top: 0;
+            background: #CC1F6F;
+            &.e--left {
+                left: -100px;
+                clip-path: polygon(0 0, 0% 100%, 100% 100%);
+                &.e--animate {
+                    animation: c-team_bg-left 1s ease forwards;
+                }
+            }
+            &.e--right {
+                right: -100px;
+                clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+                &.e--animate {
+                    animation: c-team_bg-right 1s ease forwards;
+                }
+            }
+        }
+
+        .c-team-score {
+            height: 100%;
+            width: 75px;
+            position: absolute;
+            top: 0;
+            background: #CC1F6F;
+            span {
+                font-size: 35px;
+                font-weight: 900;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff;
+            }
+            &.e--left {
+                right: -75px;
+                &.e--animate {
+                    animation: c-team_score-left 1s ease forwards;
+                }
+            }
+            &.e--right {
+                left: -75px;
+                &.e--animate {
+                    animation: c-team_score-right 1s ease forwards;
+                }
+            }
+        }
+
+        .c-team-goal {
+            height: 50px;
+            width: 50%;
+            line-height: 50px;
+            background: #CC1F6F;
+            position: absolute;
+            bottom: 0;
+            z-index: -1;
+            text-align: center;
+            span {
+                font-size: 20px;
+                color: #fff;
+            }
+            &.e--right {
+                left: 0;
+                &.e--animate {
+                    animation: c-team_goal 1s ease forwards;
+                }
+            }
+        }
+
+        @keyframes c-team {
+            to {
+                height: 100px;
+            }
+        }
+
+        @keyframes c-team_logo-left {
+            to {
+                left: 25px;
+            }
+        }
+
+        @keyframes c-team_logo-right {
+            to {
+                right: 25px;
+            }
+        }
+
+        @keyframes c-team_bg-left {
+            to {
+                left: 0;
+            }
+        }
+
+        @keyframes c-team_bg-right {
+            to {
+                right: 0;
+            }
+        }
+
+        @keyframes c-team_score-left {
+            to {
+                right: 0;
+            }
+        }
+
+        @keyframes c-team_score-right {
+            to {
+                left: 0;
+            }
+        }
+
+        @keyframes c-team_goal {
+            to {
+                bottom: -50px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .wrap {
+                flex-direction: column;
+            }
+
+            .c-team {
+                flex: 0 0 100px;
+                width: 85vw;
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="c-team">
+            <div class="c-team-logo e--left">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/200px-Paris_Saint-Germain_F.C..svg.png" alt="PSG Logo">
+            </div>
+            <div class="c-team-bg e--left"></div>
+            <div class="c-team-score e--left">
+                <span>1</span>
+            </div>
+        </div>
+        <div class="c-team">
+            <div class="c-team-logo e--right">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/440px-Manchester_United_FC_crest.svg.png" alt="Manchester United Logo">
+            </div>
+            <div class="c-team-bg e--right"></div>
+            <div class="c-team-score e--right">
+                <span>3</span>
+            </div>
+            <div class="c-team-goal e--right">
+                <span><b>94'</b> | Rashford</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runAnimation() {
+            const C_TEAM = document.querySelectorAll(".c-team");
+            const C_TEAM_LOGO = document.querySelectorAll(".c-team-logo");
+            const C_TEAM_BG = document.querySelectorAll(".c-team-bg");
+            const C_TEAM_SCORE = document.querySelectorAll(".c-team-score");
+            const C_TEAM_GOAL = document.querySelectorAll(".c-team-goal");
+
+            for (let i = 0; i < C_TEAM.length; i++) {
+                C_TEAM[i].addEventListener("animationend", function() {
+                    for (let x = 0; x < C_TEAM_LOGO.length; x++) {
+                        C_TEAM_LOGO[x].classList.add("e--animate");
+                        for (let y = 0; y < C_TEAM_BG.length; y++) {
+                            C_TEAM_BG[y].classList.add("e--animate");
+                            C_TEAM_BG[y].style.animationDelay = "0.5s";
+                            C_TEAM_BG[y].addEventListener("animationend", function() {
+                                for (let b = 0; b < C_TEAM_SCORE.length; b++) {
+                                    C_TEAM_SCORE[b].classList.add("e--animate");
+                                    C_TEAM_SCORE[b].addEventListener("animationend", function() {
+                                        C_TEAM[i].style.overflow = "visible";
+                                        C_TEAM_GOAL[0].classList.add("e--animate");
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        runAnimation();
+    </script>
+</body>
+
+</html>
