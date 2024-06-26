@@ -1,119 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ваша задолженость</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hello World</title>
     <style>
         body {
-            background-color: #f0f0f000; /* Цвет фона */
-            color: #333; /* Цвет текста */
-            font-family: Arial, sans-serif;
-            text-align: center; /* Выравнивание текста по центру */
-            margin: 0;
-            margin-top: 10px;
-            padding: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-        }
-
-h1 {
-    font-size: 60px; /* Использование абсолютного значения в пикселях */
-    color: #0077cc;
-}
-
-#number {
-    font-size: 50px; /* Использование абсолютного значения в пикселях */
-    font-weight: 900;
-}
-
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #33333300; /* Цвет фона в темной теме */
-                color: #fff; /* Цвет текста в темной теме */
-            }
-
-            h1 {
-                color: #55aaff; /* Цвет заголовка в темной теме */
-            }
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
- 
-    <h1>Долг:</h1>
-    <p id="number">Загрузка числа...</p>
-
+    <div>Hello world</div>
+    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        // Замените URL на ссылку на вашу Google таблицу и укажите конкретную ячейку
-        const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1R5LDCiCR2nOOyp7c5fT8UR7dA_Xl3S0zLTvzYtLQ93Y/edit?usp=sharing';
-
-        function getGoogleSheetData() {
-            fetch(googleSheetUrl)
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDocument = parser.parseFromString(data, 'text/html');
-                    const cellValue = htmlDocument.querySelector('table tbody tr td').innerText;
-                    document.getElementById('number').innerText = `${cellValue}`;
-                })
-                .catch(error => {
-                    console.error('Произошла ошибка:', error);
-                    document.getElementById('number').innerText = 'Ошибка при загрузке числа';
-                });
-        }
-
-        getGoogleSheetData();
-    </script>
-    <h1>Отложено:</h1>
-    <p id="number">Загрузка числа...</p>
-
-    <script>
-        // Замените URL на ссылку на вашу Google таблицу и укажите конкретную ячейку
-        const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1_lDd7o3MAKqCcYCLd-nbrvRR3qXiMTaUSZnvxjJmCdk/edit?usp=sharing';
-
-        function getGoogleSheetData() {
-            fetch(googleSheetUrl)
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDocument = parser.parseFromString(data, 'text/html');
-                    const cellValue = htmlDocument.querySelector('table tbody tr td').innerText;
-                    document.getElementById('number').innerText = `${cellValue}`;
-                })
-                .catch(error => {
-                    console.error('Произошла ошибка:', error);
-                    document.getElementById('number').innerText = 'Ошибка при загрузке числа';
-                });
-        }
-
-        getGoogleSheetData();
-    </script>
-  
-    <h1>Долг:</h1>
-    <p id="number">Загрузка числа...</p>
-
-    <script>
-        // Замените URL на ссылку на вашу Google таблицу и укажите конкретную ячейку
-        const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/1i2FWq_hwkYgXl4Tlp922gpjytGwBjLeQG-cspMNS6m8/edit?usp=sharing';
-
-        function getGoogleSheetData() {
-            fetch(googleSheetUrl)
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDocument = parser.parseFromString(data, 'text/html');
-                    const cellValue = htmlDocument.querySelector('table tbody tr td').innerText;
-                    document.getElementById('number').innerText = `${cellValue}`;
-                })
-                .catch(error => {
-                    console.error('Произошла ошибка:', error);
-                    document.getElementById('number').innerText = 'Ошибка при загрузке числа';
-                });
-        }
-
-        getGoogleSheetData();
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
     </script>
 </body>
 </html>
