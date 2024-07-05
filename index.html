@@ -1,28 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Redirecting...</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-    </style>
+  <!-- Site made with Mobirise Website Builder v5.9.18, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.18, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo5.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+  
+  <title>Home</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=oUL9qn"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=oUL9qn" type="text/css">
+
+  
+  
+  
 </head>
 <body>
-    <div>Хвилинку...</div>
-    
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
-        window.location.href = "https://rozklad-6gqo.glide.page/";
-    </script>
+  <section class="news09 startm5 cid-uhG5tYWbXD" id="news09-1">
+    <div class="container">
+      <div class="col-12 mb-5 content-head">
+        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+          <strong>Выписка:</strong>
+        </h3>
+      </div>
+      <div class="row justify-content-center" id="data-container">
+        <!-- Данные будут динамически добавлены сюда -->
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const apiKey = '1ntnrgOWP2ObOQWHlKhBnBUZH8tbYmj-8PCMS2CbOynw';
+    const sheetId = 'AIzaSyDa9jtIelYIvjC8PN3QbXh987dghzXX0CU';
+    const range = 'Sheet1!A1:B5'; // диапазон данных, например, A:B для столбцов A и B
+
+    function fetchData() {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+      
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const rows = data.values;
+          const container = document.getElementById('data-container');
+
+          rows.forEach(row => {
+            const suma = row[0];
+            const date = row[1];
+            const html = `
+              <div class="col-12 col-lg-8">
+                <div class="item features-without-image col-12 active">
+                  <div class="item-wrapper">
+                    <h5 class="mbr-card-title mbr-fonts-style mt-0 mb-3 display-5"><strong>${suma}</strong>₸</h5>
+                    <div class="details">
+                      <div class="details-item display-7">
+                        <span class="mbr-iconfont mobi-mbri-calendar mobi-mbri details-icon"></span>
+                        <p class="mbr-tag mbr-fonts-style display-7">${date}<br></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+          });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchData);
+  </script>
 </body>
 </html>
